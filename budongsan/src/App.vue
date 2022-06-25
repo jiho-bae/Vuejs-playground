@@ -1,4 +1,12 @@
 <template>
+  <div class="black-bg" v-if="modalOpened">
+    <div class="white-bg">
+      <button @click="toggleModal">모달 닫기</button>
+      <h4>상세페이지</h4>
+      <p>상세페이지 내용</p>
+    </div>
+  </div>
+
   <nav class="menu">
     <ul>
       <li v-for="menu in menus" :key="menu">
@@ -6,7 +14,7 @@
       </li>
     </ul>
   </nav>
-  <img alt="Vue logo" src="./assets/logo.png" />
+  <button @click="toggleModal">모달 열기</button>
   <div v-for="(product, idx) in products" :key="idx">
     <img class="my-image" src="./assets/img1.jpeg" />
     <h4>{{ product.name }}</h4>
@@ -23,6 +31,7 @@ export default {
     return {
       report: [0, 0, 0],
       menus: ['Home', 'Shopping', 'About'],
+      modalOpened: false,
       products: [
         { name: '역삼동 원룸', price: 60 },
         { name: '천호동 원룸', price: 40 },
@@ -36,6 +45,9 @@ export default {
     },
     decrease(idx) {
       this.report[idx] -= 1;
+    },
+    toggleModal() {
+      this.modalOpened = !this.modalOpened;
     },
   },
   components: {},
@@ -68,5 +80,27 @@ export default {
   width: 200px;
   height: 200px;
   margin-top: 40px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+}
+
+.black-bg {
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  position: fixed;
+  padding: 20px;
+}
+.white-bg {
+  width: 100%;
+  background: white;
+  border-radius: 8px;
+  padding: 20px;
 }
 </style>
