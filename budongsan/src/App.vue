@@ -7,21 +7,12 @@
     </ul>
   </nav>
   <img alt="Vue logo" src="./assets/logo.png" />
-  <div>
-    <h4>{{ products[0].name }}</h4>
-    <p>{{ products[0].price }} 만원</p>
-    <button @click="report++" @mouseover="report += 3">허위매물 신고</button>
-    <button @click="increase">증가</button>
-    <button @click="decrease">감소</button>
-    <span>신고 수 : {{ report }}</span>
-  </div>
-  <div>
-    <h4>{{ products[1].name }}</h4>
-    <p>{{ products[1].price }} 만원</p>
-  </div>
-  <div>
-    <h4>{{ products[2].name }}</h4>
-    <p>{{ products[2].price }} 만원</p>
+  <div v-for="(product, idx) in products" :key="idx">
+    <img class="my-image" src="./assets/img1.jpeg" />
+    <h4>{{ product.name }}</h4>
+    <p>{{ product.price }} 만원</p>
+    <button @click="increase(idx)">허위매물 신고</button>
+    <span>신고 수 : {{ report[idx] }}</span>
   </div>
 </template>
 
@@ -30,7 +21,7 @@ export default {
   name: 'App',
   data() {
     return {
-      report: 0,
+      report: [0, 0, 0],
       menus: ['Home', 'Shopping', 'About'],
       products: [
         { name: '역삼동 원룸', price: 60 },
@@ -40,11 +31,11 @@ export default {
     };
   },
   methods: {
-    increase: function () {
-      this.report += 3;
+    increase: function (idx) {
+      this.report[idx] += 1;
     },
-    decrease() {
-      this.report -= 3;
+    decrease(idx) {
+      this.report[idx] -= 1;
     },
   },
   components: {},
@@ -72,5 +63,10 @@ export default {
 .menu a {
   color: white;
   padding: 10px;
+}
+.my-image {
+  width: 200px;
+  height: 200px;
+  margin-top: 40px;
 }
 </style>
