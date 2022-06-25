@@ -15,6 +15,12 @@
     </ul>
   </nav>
   <button @click="toggleModal">모달 열기</button>
+  <div v-for="room in dummy" :key="room.id">
+    <img class="my-image" :src="room.image" />
+    <h4>{{ room.title }}</h4>
+    <span>${{ room.price }}</span>
+  </div>
+
   <div v-for="(product, idx) in products" :key="idx">
     <img class="my-image" src="./assets/img1.jpeg" />
     <h4>{{ product.name }}</h4>
@@ -25,6 +31,8 @@
 </template>
 
 <script>
+import dummy from './assets/dummy';
+
 export default {
   name: 'App',
   data() {
@@ -37,6 +45,7 @@ export default {
         { name: '천호동 원룸', price: 40 },
         { name: '마포구 원룸', price: 50 },
       ],
+      dummy,
     };
   },
   methods: {
