@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://unpkg.com/vue@3"></script>
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="app">
+      <span>좋아요 수 : {{ like }}</span>
+      <button @click="like++">좋아요</button>
+      <button @click="like+=100">엄청 좋아요</button>
+    </div>
+    <script>
+      const { createApp } = Vue;
+
+      createApp({
+        data() {
+          return {
+            like: 0,
+          };
+        },
+      }).mount('#app');
+    </script>
+  </body>
+</html>

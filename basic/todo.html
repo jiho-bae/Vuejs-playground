@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <script src="https://unpkg.com/vue@3"></script>
+  </head>
+  <body>
+    <div id="app">
+      <form @submit.prevent="addTodo">
+        <input v-model="newTodo" placeholder="Insert your todo" />
+        <button>할일 추가</button>
+      </form>
+      <ul>
+        <li v-for="todo in todos" :key="todo.id">
+          {{todo.text}}
+          <button @click="delTodo(todo)">X</button>
+        </li>
+      </ul>
+    </div>
+    <script>
+      let id = 0;
+      const { createApp } = Vue;
+
+      createApp({
+        data() {
+          return {
+            todos: [
+              { id: id++, text: 'Hello World' },
+              { id: id++, text: 'Hi Jane' },
+              { id: id++, text: 'Welcome Thomas' },
+            ],
+            newTodo: '',
+          };
+        },
+        methods: {
+          addTodo() {
+            this.todos.push({ id: id++, text: this.newTodo });
+            this.newTodo = '';
+          },
+          delTodo(todo) {
+            const delId = todo.id;
+            this.todos = this.todos.filter((todo) => todo.id !== delId);
+          },
+        },
+      }).mount('#app');
+    </script>
+  </body>
+</html>
