@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <script src="https://unpkg.com/vue@3"></script>
+  </head>
+  <body>
+    <div id="app">
+      <button @click="toggleShow">목록 숨기기</button>
+      <button @click="insertNumber">숫자 추가</button>
+      <button @click="deleteNumber">숫자 제거</button>
+      <button @click="reverseNumber">숫자 목록 뒤집기</button>
+      <ul v-if="show">
+        <li v-for="num of list">{{num}}</li>
+      </ul>
+      <p v-else-if="list.length">목록이 있으나, 숨김처리되었습니다.</p>
+      <p v-else>목록이 없습니다.</p>
+    </div>
+    <script>
+      const { createApp } = Vue;
+
+      createApp({
+        data() {
+          return {
+            show: true,
+            list: [1, 2, 3, 4],
+          };
+        },
+        methods: {
+          toggleShow() {
+            this.show = !this.show;
+          },
+          insertNumber() {
+            this.list.push(this.list.length + 1);
+          },
+          deleteNumber() {
+            this.list.pop();
+          },
+          reverseNumber() {
+            this.list = this.list.reverse();
+          },
+        },
+      }).mount('#app');
+    </script>
+  </body>
+</html>

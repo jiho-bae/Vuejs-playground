@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <script src="https://unpkg.com/vue@3"></script>
+  </head>
+  <body>
+    <div id="app">
+      <h4>{{ msg }}</h4>
+      <button @click="reverseMsg">reverse msg</button>
+      <button @click="addExcMark">Add "!"</button>
+      <a href="https://naver.com" @click.prevent="linkAlert"
+        >e.preventDefault()가 동작하는 링크</a
+      >
+    </div>
+    <script>
+      const { createApp } = Vue;
+
+      createApp({
+        data() {
+          return {
+            msg: 'Hi Vue!',
+          };
+        },
+        methods: {
+          reverseMsg() {
+            this.msg = this.msg.split('').reverse().join('');
+          },
+          addExcMark() {
+            this.msg += '!';
+          },
+          linkAlert() {
+            alert('e.preventDefault가 동작했습니다.');
+          },
+        },
+      }).mount('#app');
+    </script>
+  </body>
+</html>

@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <script src="https://unpkg.com/vue@3"></script>
+  </head>
+  <body>
+    <div id="app">
+      <h2>텍스트 입력하기</h2>
+      <input v-model="text" /> {{text}}
+
+      <h2>Check Box</h2>
+      <input type="checkbox" id="checkbox" v-model="checked" />
+      <label for="'checkbox">체크 여부 : {{checked}}</label>
+
+      <h2>Multi Check</h2>
+      <input type="checkbox" id="first" value="첫번째" v-model="checkOrders" />
+      <label for="first">첫번째</label>
+      <input type="checkbox" id="second" value="두번째" v-model="checkOrders" />
+      <label for="second">두번째</label>
+      <input type="checkbox" id="third" value="세번째" v-model="checkOrders" />
+      <label for="third">세번째</label>
+      <p>체크된 이름: <prev>{{ checkOrders }}</prev></p>
+
+      <h2>Radio</h2>
+      <input type="radio" id="짜장면" value="짜장면" v-model="picked" />
+      <label for="짜장면">짜장면</label>
+      <input type="radio" id="짬뽕" value="짬뽕" v-model="picked" />
+      <label for="짬뽕">짬뽕</label>
+      <p>Picked :{{ picked }}</p>
+
+      <h2>Select</h2>
+      <select v-model="selected">
+        <option disabled value="">하나를 선택할 수 있습니다.</option>
+        <option>A</option>
+        <option>B</option>
+        <option>C</option>
+      </select>
+      <p>선택한 옵션 : {{ selected }}</p>
+
+      <h2>Multi Select</h2>
+      <select v-model="selectedLists" multiple>
+        <option disabled value="">하나를 선택할 수 있습니다.</option>
+        <option>A</option>
+        <option>B</option>
+        <option>C</option>
+        <option>D</option>
+      </select>
+      <p>선택한 옵션들 : {{ selectedLists }}</p>
+    </div>
+    <script>
+      const { createApp } = Vue;
+
+      createApp({
+        data() {
+          return {
+            text: '',
+            checked: true,
+            checkOrders: ['세번째'],
+            picked: '짜장면',
+            selected: 'B',
+            selectedLists: ['C'],
+          };
+        },
+      }).mount('#app');
+    </script>
+  </body>
+</html>

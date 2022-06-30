@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <script src="https://unpkg.com/vue@3"></script>
+  </head>
+  <style>
+    .violet {
+      color: violet;
+    }
+  </style>
+  <body>
+    <div id="app">
+      <h4 v-bind:title="hello">
+        마우스를 올려서 동적으로 바인딩된 title을 볼 수 있습니다.
+      </h4>
+      <p :class="{ violet:isViolet }"  v-on:click="toggleViolet"></p>
+        이 텍스트는 보라색이며, 클릭 시 검은색으로 전환됩니다.
+      </p>
+      <span :style="{ color }" @click="toggleColor"
+        >이 텍스트는 빨간색이며, 클릭 시 파란색으로 전환됩니다.</span
+      >
+    </div>
+    <script>
+      const { createApp } = Vue;
+
+      createApp({
+        data() {
+          return {
+            msg: 'Hi Vue!',
+            hello: 'Hello World',
+            color: 'red',
+            isViolet: true,
+          };
+        },
+        methods: {
+          toggleColor() {
+            this.color = this.color === 'red' ? 'blue' : 'red';
+          },
+          toggleViolet() {
+            this.isViolet = !this.isViolet;
+          },
+        },
+      }).mount('#app');
+    </script>
+  </body>
+</html>
